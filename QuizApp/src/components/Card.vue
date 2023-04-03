@@ -1,14 +1,18 @@
 <script setup>
 import {defineProps} from "vue"
+import {useRouter} from "vue-router"
 
+const router = useRouter()
 const {quiz} = defineProps(['quiz'])
 
-console.log(quiz)
+const navigateToQuiz = () => {
+    router.push(`/quiz/${quiz.id}`)
+}
 
 </script>
 
 <template>
-    <div  class="card">
+    <div  class="card" @click="navigateToQuiz">
         <img :src="quiz.img" alt="">
         <div class="card-text">
             <h2>{{ quiz.name}}</h2>
@@ -26,7 +30,7 @@ console.log(quiz)
     width: 310px;
     overflow: hidden;
     border-radius: 2%;
-    box-shadow: 1px, 1px, 10px rgb(0,0,0,0.1);
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
     margin-bottom: 35px;
     margin-right: 20px;
     cursor: pointer;
@@ -43,12 +47,6 @@ console.log(quiz)
 
 .card .card-text h2 {
     font-weight: bold;
-
 }
-
-
-
-
-
 
 </style>
